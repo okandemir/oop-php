@@ -8,12 +8,13 @@ use Fridge\Goods\Goods;
 
 trait ComponentTrait
 {
+
     /**
-     * @param $goods
+     * @param Goods $goods
      * @param int $count
      * @return void
      */
-    public function insert($goods)
+    public function remove($goods)
     {
         if (empty(!$this->goodsList)) {
             $isFound = false;
@@ -26,11 +27,11 @@ trait ComponentTrait
             }
 
             if (!$isFound) {
-                echo "Bu ürün " . $goods->name . " bulunamadı!";
+                return $this->sendResponse(false, "Bu ürün dolapta" . $goods->name . " bulunamadı!");
             }
-            echo "Afiyet Olsun!";
+            return $this->sendResponse(true, "Afiyet Olsun");
         } else {
-            echo "Yeterli Miktarda " . $goods->name . " bulunmamaktadır.";
+            return $this->sendResponse(false, "Yeterli Miktarda " . $goods->name . " bulunmamaktadır.");
         }
     }
 
@@ -39,14 +40,13 @@ trait ComponentTrait
      * @param int $count
      * @return void
      */
-    public function remove($goods)
+    public function insert($goods)
     {
-        if(count($this->goods) != $this->limit){
-
-            array_push($this->goods, $goods);
-
-        }else{
-            echo "Raf Zaten Dolu.";
+        if(count($this->getGoodsList()) != $this->limit){
+            $this->pushToGoodsList($goods);
+            return $this->sendResponse();
         }
+
+        return $this->sendResponse(false, "Raf Zaten Dolu.");
     }
 }

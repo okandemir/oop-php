@@ -1,11 +1,12 @@
 <?php
 
 
-namespace Fridge\Main;
+namespace Fridge\Core;
 
 
 trait ResponseTrait
 {
+
     public $status;
     public $responseMessage;
 

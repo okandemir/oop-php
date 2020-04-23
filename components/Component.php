@@ -32,16 +32,32 @@ abstract class Component
      */
     public abstract function updateDetails($name, $limit = 1, $goods = []);
 
-    /**
-     * @param Goods $goods
-     * @return mixed
-     */
-    public abstract function takeGoods($goods);
 
-    /**
-     * @param Goods $goods
-     * @return mixed
-     */
-    public abstract function putGoods($goods);
+    public function getId(){
+        return $this->id;
+    }
 
+
+    public function getGoodsList(){
+        return $this->goodsList;
+    }
+
+    public function setGoodsList($goodsList){
+        return $this->goodsList = $goodsList;
+    }
+
+
+    public function pushToGoodsList($goods){
+        array_push($this->goodsList, $goods);
+    }
+
+
+    public function getName(){
+        return $this->name;
+    }
+
+
+    public function getLimit(){
+        return $this->limit;
+    }
 }

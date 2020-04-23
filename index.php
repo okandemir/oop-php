@@ -1,8 +1,8 @@
 <?php
+require_once "load.php";
 
-require_once "objects/Component.php";
-
-use Fridge\Object\Component;
+use Fridge\Main\Fridge;
+use Fridge\Goods\Cola;
 /*
  *
  *
@@ -15,3 +15,17 @@ use Fridge\Object\Component;
  *
  *
  * */
+
+
+$fridge = new Fridge();
+
+$fridge->addShelf("first", 20, []);
+$fridge->addShelf("second", 20, []);
+$fridge->addShelf("third", 20, []);
+
+$cola = new Cola("test");
+$fridge->put($cola);
+
+echo $fridge->getGoodsCount();
+//public function runTest();
+

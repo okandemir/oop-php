@@ -2,11 +2,13 @@
 
 namespace Fridge\Component;
 
+use Fridge\Core\Fillable;
+use Fridge\Core\ResponseTrait;
 use Fridge\Goods\Goods;
 
-class Shelf extends Component
+class Shelf extends Component implements Fillable
 {
-    use ComponentTrait;
+    use ComponentTrait, ResponseTrait;
 
     /**
      * @param $name
@@ -23,9 +25,9 @@ class Shelf extends Component
      * @param Goods $goods
      * @return mixed|void
      */
-    public function putGoods($goods)
+    public function put($goods)
     {
-        $this->insert($goods);
+        return $this->insert($goods);
     }
 
 
@@ -33,8 +35,8 @@ class Shelf extends Component
      * @param Goods $goods
      * @return mixed|void
      */
-    public function takeGoods($goods)
+    public function take($goods)
     {
-        $this->remove($goods);
+        return $this->remove($goods);
     }
 }
