@@ -18,7 +18,7 @@ class Fridge implements Fillable
     private $state;
     private $goodsCount;
 
-    public function __construct($shelfLimit = 1)
+    public function __construct($shelfLimit = 3)
     {
         $this->doorClosed = true;
         $this->shelfs = [];
@@ -39,8 +39,14 @@ class Fridge implements Fillable
             return $this->sendResponse(false, "Dolabınızda yeni raf için yeterli alan bulunmamaktadır!");
         }
 
+        if(count($goods) > $limit){
+            return $this->sendResponse(false, "Eklenmek istenen ürün sayısı raf limitinden fazla olamaz!");
+        }
+
         array_push($this->shelfs, new Shelf($name, $limit, $goods));
         $this->goodsCount += count($goods);
+        $this->updateStatus(CommonConstant::ADD_BULK_SHELF);
+
         return $this->sendResponse();
 
     }
@@ -97,9 +103,14 @@ class Fridge implements Fillable
      */
     public function updateStatus($type){
 
+
        $type == CommonConstant::TAKE
            ? $this->goodsCount--
-           : $this->goodsCount++;
+           : (
+               $type==CommonConstant::PUT
+                ? $this->goodsCount++
+                : 0
+       );
 
         if($this->goodsCount == 0){
             $this->state = CommonConstant::COMPLETELY_EMPTY;

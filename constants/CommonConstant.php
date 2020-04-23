@@ -10,4 +10,5 @@ class CommonConstant
 
     const PUT = "PUT";
     const TAKE = "TAKE";
+    const ADD_BULK_SHELF = "BULK_SHELF";
 }

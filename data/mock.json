@@ -1,0 +1,19 @@
+{
+  "shelfs": [
+    {
+      "name": "First",
+      "limit": 20,
+      "goodsCount": 20
+    },
+    {
+      "name": "Second",
+      "limit": 20,
+      "goodsCount": 17
+    },
+    {
+      "name": "Third",
+      "limit": 20,
+      "goodsCount": 14
+    }
+  ]
+}

@@ -16,16 +16,24 @@ use Fridge\Goods\Cola;
  *
  * */
 
+runTest();
 
-$fridge = new Fridge();
+function runTest(){
+    $fridge = new Fridge();
+    $mockData = json_decode(file_get_contents("data/mock.json"), true);
+    foreach ($mockData["shelfs"] as $shelf){
+        $goods = [];
+        while($shelf["goodsCount"] == 0){
+            $goods[] = new Cola("Cola".$shelf["goodsCount"]);
+            $shelf["goodsCount"]--;
+        }
+        $response = $fridge->addShelf($shelf["name"], $shelf["limit"], $goods);
+        if(!$response["status"]){
+            echo $response["message"];
+            break;
+        }
+    }
+}
 
-$fridge->addShelf("first", 20, []);
-$fridge->addShelf("second", 20, []);
-$fridge->addShelf("third", 20, []);
 
-$cola = new Cola("test");
-$fridge->put($cola);
-
-echo $fridge->getGoodsCount();
-//public function runTest();
 
