@@ -5,7 +5,7 @@ Proje ana dizini içerisinde aşağıdaki komutu çalıştırabilirsiniz.
 php index.php
 ```
 
-#Mock Data
+# Mock Data
 data/ dizinde bulunan mock.json dosyasında değişiklikler yaparak projeyi test edebilirsiniz. 
 ```
 {
@@ -29,7 +29,7 @@ data/ dizinde bulunan mock.json dosyasında değişiklikler yaparak projeyi test
 }
 ```
 
-#Çıktı Örneği
+# Çıktı Örneği
 ```
 ##############################
 
