@@ -1,8 +1,10 @@
-# Cli ile çalıştırma
+# CLI ile çalıştırma
 
 Proje ana dizini içerisinde aşağıdaki komutu çalıştırabilirsiniz.
 ```
 php index.php
+ya da
+{php path} {index.php path}
 ```
 
 # Mock Data
