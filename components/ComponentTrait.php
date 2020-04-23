@@ -18,16 +18,16 @@ trait ComponentTrait
     {
         if (empty(!$this->goodsList)) {
             $isFound = false;
-            foreach ($this->goodsList as $k => $k) {
-                if (get_class($goods) == get_class($k)) {
+            foreach ($this->goodsList as $k => $value) {
+                if (get_class($goods) == get_class($value)) {
                     unset($this->goodsList[$k]);
-                    $isFind = true;
+                    $isFound = true;
                     break;
                 }
             }
 
             if (!$isFound) {
-                return $this->sendResponse(false, "Bu ürün dolapta" . $goods->name . " bulunamadı!");
+                return $this->sendResponse(false, "Bu ürün " . $goods->getName() . " dolapta bulunamadı!");
             }
             return $this->sendResponse(true, "Afiyet Olsun");
         } else {

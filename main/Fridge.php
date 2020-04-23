@@ -47,7 +47,7 @@ class Fridge implements Fillable
         $this->goodsCount += count($goods);
         $this->updateStatus(CommonConstant::ADD_BULK_SHELF);
 
-        return $this->sendResponse();
+        return $this->sendResponse(true, "Yeni Raf Oluşturuldu");
 
     }
 
@@ -103,7 +103,6 @@ class Fridge implements Fillable
      */
     public function updateStatus($type){
 
-
        $type == CommonConstant::TAKE
            ? $this->goodsCount--
            : (
@@ -112,22 +111,23 @@ class Fridge implements Fillable
                 : 0
        );
 
-        if($this->goodsCount == 0){
+
+        $count = 0;
+        $limitCount = 0;
+        foreach ($this->shelfs as $shelf) {
+            $count += count($shelf->getGoodsList());
+            $limitCount += $shelf->getLimit();
+        }
+        $this->goodsCount = $count;
+        if ($limitCount == $this->goodsCount) {
+            $this->state = CommonConstant::FULLY;
+        } else if($this->goodsCount == 0){
             $this->state = CommonConstant::COMPLETELY_EMPTY;
         }else{
-            $count = 0;
-            $limitCount = 0;
-            foreach ($this->shelfs as $shelf){
-                $count += count($shelf->getGoodsList());
-                $limitCount += $shelf->getLimit();
-            }
-            $this->goodsCount = $count;
-            if($limitCount == $count){
-                $state = CommonConstant::FULLY;
-            }else{
-                $state = CommonConstant::PARTLY;
-            }
+            $this->state = CommonConstant::PARTLY;
         }
+
+
     }
 
 
@@ -141,5 +141,13 @@ class Fridge implements Fillable
     public function getGoodsCount()
     {
         return $this->goodsCount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 }

@@ -1,19 +1,19 @@
 {
   "shelfs": [
     {
-      "name": "First",
+      "name": "Birinci Raf",
       "limit": 20,
       "goodsCount": 20
     },
     {
-      "name": "Second",
+      "name": "İkinci Raf",
       "limit": 20,
-      "goodsCount": 17
+      "goodsCount": 19
     },
     {
-      "name": "Third",
+      "name": "Üçüncü Raf",
       "limit": 20,
-      "goodsCount": 14
+      "goodsCount": 20
     }
   ]
 }
